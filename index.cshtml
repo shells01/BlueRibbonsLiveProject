@@ -8,7 +8,32 @@
 
 <!-- Customer Dashboard page-->
 <!-- Model: Customer Model
-    - Customer, Review, ItemRequest, Campaign, TODO: ReviewLog -->
+    - Customer, 
+      Review, 
+      ItemRequest, 
+      Campaign, 
+      TODO: ReviewLog? -->
+
+<!-- Customer.FullName,
+     Customer.Email,
+     Reviews.Count, TODO: ReviewLog.Count?
+     Review.SelectedDate,
+     Review.DiscountCode,
+     Review.ProductRating,
+     Review.ReviewLink,
+     Campaign.ItemURL,
+     Campaign.ASIN,
+     Campaign.Name
+     Campaign.GetVendorURL,
+     Campaign.GetAmazonURL,
+     Campaign.displayAsCurrency,
+     Campaign.SalePriceNumerical,
+     ItemRequest.ActiveRequest,
+     ItemRequest.ItemRequestID,
+     ItemRequest.RequestDate
+
+    -->
+
 <!-- TODO: Map ReviewLog to Customer model, 
      TODO: add-migration for Customer model, 
      TODO: Map ReviewLog to this page & create 2 new tabs for BRR local reviews
@@ -400,6 +425,7 @@
                     it will list the item here with a link to your review!
                 </div>
             </div>
+            <!-- Displays reviewed items -->
             <!-- Column Left: ImageURL + ASIN/ID -->
             <!-- Column Center: Item Name, DateCodeGiven, ReviewDate -->
             <!-- Column Right: (Link to purchase item), Link to view Review -->
