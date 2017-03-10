@@ -3,7 +3,7 @@ Samples of some code from my Live Project (open source)
 Live Project: Adding a new internal review feature to the Blue Ribbons Review website (blueribbonsreview.com)
 
 <b>index.cshtml</b>
-Customer dashboard for the Blue Ribbons website.
+Customer dashboard for the Blue Ribbons website (incomplete).
 - I made some visual revisions
 - I added new tabs for the new internal review feature. 
 
