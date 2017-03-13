@@ -8,10 +8,10 @@ Customer dashboard for the Blue Ribbons website (incomplete).
 - I added new tabs for the new internal review feature. 
 
 <b>ReviewLog.cs</b>
-
-<b>ReviewLogController.cs</b>
 ReviewLog Model, database for local Blue Ribbons reviews
 - I worked in a team of three to write and scaffold a ReviewLog model. 
+
+<b>ReviewLogController.cs</b>
 
 <b>Index.cshtml</b>
 Homepage for the Blue Ribbons website
