@@ -1,0 +1,41 @@
+﻿@model List<Blue_Ribbon.Models.ReviewLog>
+@* This section-The Partial View for the InHouseReviews. Should display local reviews in tab 5 of Customer Dashboard*@
+
+<div>
+    @foreach (var item in Model)
+            {
+            <!-- Displays reviewed items -->
+        <div class="row dashOpenItem">
+            <!-- Column Left: ImageURL + ASIN/ID -->
+            <div class="col-md-2 col-xs-3 text-center">
+                <!-- ImageURL from Deal here -->
+                Item#<b>@item.ASIN</b>
+                <br />
+
+            </div>
+            <!-- Column Center: Item Name, DateCodeGiven, ReviewDate -->
+            <div class="col-md-6 col-xs-5">
+                <div class="row text-center">
+                    <b>@item.SelectedDate</b><br />
+                    <b>@item.DateReviewed</b>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-1">
+
+            </div>
+            <!-- Column Right: (Link to purchase item), Link to view Review -->
+            <div class="col-md-3 col-xs-2">
+                <div class="row">
+                    <a href="#" target="_blank"
+                       class="btn btn-primary"
+                       style="align-content:center; white-space:normal;">
+                        Read your review here!
+                        <span class="glyphicon glyphicon-new-window"></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    }
+</div>

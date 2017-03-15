@@ -8,12 +8,11 @@
 
 <!-- Customer Dashboard page-->
 <!-- Model: Customer Model
-    - Customer, 
-      Review, 
-      ItemRequest, 
-      Campaign, 
+    - Customer,
+      Review,
+      ItemRequest,
+      Campaign,
       TODO: ReviewLog? -->
-
 <!-- Customer.FullName,
      Customer.Email,
      Reviews.Count, TODO: ReviewLog.Count?
@@ -33,9 +32,8 @@
      ItemRequest.RequestDate
 
     -->
-
-<!-- TODO: Map ReviewLog to Customer model, 
-     TODO: add-migration for Customer model, 
+<!-- TODO: Map ReviewLog to Customer model,
+     TODO: add-migration for Customer model,
      TODO: Map ReviewLog to this page & create 2 new tabs for BRR local reviews
     -->
 
@@ -47,9 +45,10 @@
         </a>
         <h3>Welcome @Model.FullName! - Your Dashboard</h3>
         <!-- NEW: Added how many pending reviews customer has-->
-        <h4>You have @Model.Reviews.Count pending reviews</h4>
-        @*<h5>The holidays are right around the corner! Give the gift of eBay</h5>*@
+        @*<h4>You have @Model.Reviews.Count pending reviews</h4>*@
         
+        @*<h5>The holidays are right around the corner! Give the gift of eBay</h5>*@
+
         @*<p>Amazon Profile ID: @User.Identity.Name</p>*@
         @*<strong>@Html.ActionLink("Reviewer Guide", "Welcome", "Dashboard", new { @class = "btn btn-primary" })</strong>*@
         @*<a data-target="#help-modal" role="button" data-toggle="modal" id="help-modal-button" class="btn btn-default">Contact Help Desk</a>
@@ -94,12 +93,12 @@
 
     <!-- Div for Entire Tabs Content -->
     <div class="tab-content">
-        
+
         <!-- Tab 1: "MyDeals", Deals I Scored-->
         <div role="tabpanel" class="tab-pane fade in active" id="MyDeals">
             <div class="alert alert-warning review-alert row" id="dash-content" role="alert">
                 <div class="col-xs-12 dashboard-tab-description">
-                    Any deal you receive through Blue Ribbons will be listed here if you haven't reviewed it. If you loved the item, we certainly encourage you to 
+                    Any deal you receive through Blue Ribbons will be listed here if you haven't reviewed it. If you loved the item, we certainly encourage you to
                     write a review and let other people know what you thought!
                 </div>
             </div>
@@ -110,7 +109,7 @@
                 var overdue = DateTime.Compare(item.DueDate, DateTime.Now.Date);
                 if (item.Reviewed == false)
                 {
-                    <!-- Column 1: ImageURL + ASIN -->
+            <!-- Column 1: ImageURL + ASIN -->
                     <div class="row dashOpenItem">
                         <div class="col-md-2 col-xs-3 text-center">
                             <img src=@item.Campaign.ImageUrl class="dashboardRowImage" /><br />
@@ -118,13 +117,13 @@
                         </div>
                         <div class="col-md-6 col-xs-5">
                             @*@if (!string.IsNullOrEmpty(item.CustomerAlert))
-                            {
+                                {
                                 <div class="row">
                                     <div class="alert alert-danger">
                                         @item.CustomerAlert
                                     </div>
                                 </div>
-                            }*@
+                                }*@
                             <!-- Column 2: Item's Name + SelectedDate(DateCodeGiven) + item's DiscountCode
                                 item.Campaign.Name
                                 item.SelectedDate(from Review Model)-->
@@ -135,8 +134,8 @@
                             <div class="row">
                                 Your received deal on: @item.SelectedDate.ToShortDateString()
                                 @*@if (overdue <= 0)
-                                { <span class="overdue">   REVIEW OVERDUE!</span>
-                                }*@
+                                    { <span class="overdue">   REVIEW OVERDUE!</span>
+                                    }*@
                             </div>
                             <div class="row">
                                 @if (item.DiscountCode == null)
@@ -176,46 +175,46 @@
 
                             </div>
                             <div class="row">
-                                    <p>
-                                        <a href="@item.Campaign.AmazonUrl#summaryStars" target="_blank" class="btn btn-primary" style="align-content:center; white-space:normal;">Write Review on Amazon.com! <span class="glyphicon glyphicon-new-window"></span></a>
-                                    </p>
+                                <p>
+                                    <a href="@item.Campaign.AmazonUrl#summaryStars" target="_blank" class="btn btn-primary" style="align-content:center; white-space:normal;">Write Review on Amazon.com! <span class="glyphicon glyphicon-new-window"></span></a>
+                                </p>
                             </div>
-                            
+
                             @*Not using manual check form*@
                             @*<div class="row">
-                                <a data-target="#@item.ReviewID" role="button" data-toggle="modal" class="btn btn-default" style="align-content:center; white-space:normal;">I've reviewed this item already!</a>
-                                <div class="modal fade" id="@item.ReviewID">
-                                    <div class="modal-dialog help-modal">
-                                        <div class="modal-content">
-                                            <div class="modal-body" style="color:#444">
-                                                <div class="row">
+                                    <a data-target="#@item.ReviewID" role="button" data-toggle="modal" class="btn btn-default" style="align-content:center; white-space:normal;">I've reviewed this item already!</a>
+                                    <div class="modal fade" id="@item.ReviewID">
+                                        <div class="modal-dialog help-modal">
+                                            <div class="modal-content">
+                                                <div class="modal-body" style="color:#444">
+                                                    <div class="row">
 
-                                                    <div class="col-sm-12">
-                                                        <h3>How do I find my review link?</h3>
-                                                        <ol>
-                                                            <li>
-                                                                Go to <a href="@item.Customer.generateURL()" target="_blank">Your Reviews on Amazon.</a>
-                                                            </li>
-                                                            <li>
-                                                                Find your review and click on the "Permalink". (see photo below for example):
-                                                                <img src="~/images/permalinkExample.png" id="checkReviewFormImage" />
-                                                            </li>
-                                                            <li>
-                                                                Your review link will be in address bar. Copy it it and paste it in the box below.
-                                                            </li>
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <div class="alert alert-danger">
-                                                            <b>After you've written your review, please wait at least 12 hours before using this form.</b>
+                                                        <div class="col-sm-12">
+                                                            <h3>How do I find my review link?</h3>
+                                                            <ol>
+                                                                <li>
+                                                                    Go to <a href="@item.Customer.generateURL()" target="_blank">Your Reviews on Amazon.</a>
+                                                                </li>
+                                                                <li>
+                                                                    Find your review and click on the "Permalink". (see photo below for example):
+                                                                    <img src="~/images/permalinkExample.png" id="checkReviewFormImage" />
+                                                                </li>
+                                                                <li>
+                                                                    Your review link will be in address bar. Copy it it and paste it in the box below.
+                                                                </li>
+                                                            </ol>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                @using (@Html.BeginForm("ReviewCheckForm", "Dashboard", FormMethod.Post, new { @class = "ReviewCheckForm", @id = @String.Concat(@item.ReviewID, "ReviewCheckForm") }))
-                                                {
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <div class="alert alert-danger">
+                                                                <b>After you've written your review, please wait at least 12 hours before using this form.</b>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @using (@Html.BeginForm("ReviewCheckForm", "Dashboard", FormMethod.Post, new { @class = "ReviewCheckForm", @id = @String.Concat(@item.ReviewID, "ReviewCheckForm") }))
+                                                    {
                                                     <div class="row">
                                                         <div class="form-group">
                                                             <div class="col-md-3">
@@ -226,56 +225,56 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                }
+                                                    }
 
-                                                <div id="@String.Concat(@item.ReviewID, "loading")" class="reviewCheckLoading">
-                                                    Confirming Review - Please Wait: <img src='~/images/loading.gif' class="" />
+                                                    <div id="@String.Concat(@item.ReviewID, " loading")" class="reviewCheckLoading">
+                                                        Confirming Review - Please Wait: <img src='~/images/loading.gif' class="" />
+                                                    </div>
+                                                    <div id="@String.Concat(@item.ReviewID, " failed")" class="reviewCheckFailed" hidden>
+                                                        <p>Our automated system isn't perfect though:</p>
+                                                        <ul>
+                                                            <li>
+                                                                Double-check the link you entered.
+                                                            </li>
+                                                            <li>
+                                                                If you've just reviewed the item, it may take a while until this checker will be able to find it.
+                                                            </li>
+                                                            <li>
+                                                                If you write a lot of reviews every day, then we recommend visiting your dashboard right after you write reviews for our products. It makes it easier for us
+                                                                to find your reviews automatically without you having to use this form.
+                                                            </li>
+                                                            <li>
+                                                                If you're certain this review link is correct, click the button to have it sent to our team for review. <br />
+                                                                <button type="button" class="btn btn-warning btn-sm manualReviewSubmit" id="@String.Concat(@item.ReviewID, " ManualReview")">Request manual review.</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <div id="@String.Concat(@item.ReviewID, "failed")" class="reviewCheckFailed" hidden>
-                                                    <p>Our automated system isn't perfect though:</p>
-                                                    <ul>
-                                                        <li>
-                                                            Double-check the link you entered.
-                                                        </li>
-                                                        <li>
-                                                            If you've just reviewed the item, it may take a while until this checker will be able to find it.
-                                                        </li>
-                                                        <li>
-                                                            If you write a lot of reviews every day, then we recommend visiting your dashboard right after you write reviews for our products. It makes it easier for us
-                                                            to find your reviews automatically without you having to use this form.
-                                                        </li>
-                                                        <li>
-                                                            If you're certain this review link is correct, click the button to have it sent to our team for review. <br />
-                                                            <button type="button" class="btn btn-warning btn-sm manualReviewSubmit" id="@String.Concat(@item.ReviewID, "ManualReview")">Request manual review.</button>
-                                                        </li>
-                                                    </ul>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success reviewCheckSubmit" id="@String.Concat(@item.ReviewID, " ReviewSubmit")">Confirm Review Now</button>
+                                                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-success reviewCheckSubmit" id="@String.Concat(@item.ReviewID, "ReviewSubmit")">Confirm Review Now</button>
-                                                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
 
-                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>*@
+                                </div>*@
 
                         </div>
                     </div>
-                                <hr />
+                    <hr />
                 }
 
             }
 
         </div>
-        
+
         <!-- Tab 2: "MyReviews", Items I Reviewed-->
         <div role="tabpanel" class="tab-pane fade" id="MyReviews">
             <div class="alert alert-success review-alert row" id="dash-content" role="alert">
                 <div class="col-xs-12 dashboard-tab-description">
-                    If you reviewed a deal you got through Blue Ribbons, it will list the item here with a link to the item on Amazon and your review! 
+                    If you reviewed a deal you got through Blue Ribbons, it will list the item here with a link to the item on Amazon and your review!
                 </div>
             </div>
             <!-- If item was reviewed, display item here-->
@@ -283,7 +282,7 @@
             {
                 if (item.Reviewed == true)
                 {
-                    <!-- Column Left: ImageURL + ASIN-->
+            <!-- Column Left: ImageURL + ASIN-->
                     <div class="row dashOpenItem">
                         <div class="col-md-2 col-xs-3 text-center">
                             <img src=@item.Campaign.ImageUrl class="dashboardRowImage" /><br />
@@ -303,7 +302,8 @@
                                 {
                                     <text>unavailable</text>
                                 }
-                                else {
+                                else
+                                {
                                     for (int x = 0; x < item.ProductRating; x++)
                                     {<span class="glyphicon glyphicon-star"></span>}
                                 }
@@ -335,7 +335,7 @@
 
                         </div>
                     </div>
-                                <hr />
+                    <hr />
                 }
             }
         </div>
@@ -355,8 +355,8 @@
             {
                 if (item.ActiveRequest == true)
                 {
-                    <!-- Column Left: ImageURL + ASIN-->
-                    <div class="row dashOpenItem" id="@String.Concat(@item.ItemRequestID, "RequestBox")">
+            <!-- Column Left: ImageURL + ASIN-->
+                    <div class="row dashOpenItem" id="@String.Concat(@item.ItemRequestID, " RequestBox")">
                         <div class="col-md-2 col-xs-3 text-center">
                             <img src=@item.Campaign.ImageUrl class="dashboardRowImage" /><br />
                             Item# <b>@item.Campaign.ASIN</b>
@@ -388,8 +388,8 @@
                                         <a href="@item.Campaign.AmazonUrl" target="_blank" class="btn btn-success" style="align-content:center; white-space:normal;">See item on Amazon.com! <span class="glyphicon glyphicon-new-window"></span></a>
                                     }
                                 </p>
-                                <p id="@String.Concat(@item.ItemRequestID, "ErrorAlert")">
-                                    <button type="button" class="btn btn-default btn-sm itemRequestCancel" id="@String.Concat(@item.ItemRequestID, "Request")">Cancel deal request.</button>
+                                <p id="@String.Concat(@item.ItemRequestID, " ErrorAlert")">
+                                    <button type="button" class="btn btn-default btn-sm itemRequestCancel" id="@String.Concat(@item.ItemRequestID, " Request")">Cancel deal request.</button>
 
                                 </p>
 
@@ -397,44 +397,46 @@
 
                         </div>
                     </div>
-                                <hr id="@String.Concat(@item.ItemRequestID, "RequestHR")" />
+                    <hr id="@String.Concat(@item.ItemRequestID, " RequestHR")" />
                 }
             }
         </div>
-        
+
+        <!-- NEW Blue Ribbons local reviews!!-->
         <!-- Tab 4: "BRRDeals"Internal BRR Items to Review Tab -->
-        <div role="tabpanel" class="tab-pane fade in active" id="MyBRRDeals">
+        <div role="tabpanel" class="tab-pane fade" id="MyBRRDeals">
             <div class="alert alert-warning review-alert row" id="dash-content" role="alert">
                 <div class="col-xs-12 dashboard-tab-description">
-                    Any deal you receive through Blue Ribbons will be listed here if you haven't reviewed it. 
-                    If you loved the item, we certainly encourage you to write a review here 
+                    Any deal you receive through Blue Ribbons will be listed here if you haven't reviewed it.
+                    If you loved the item, we certainly encourage you to write a review here
                     and let other people know what you thought!
                 </div>
             </div>
-            <!-- If Review for a deal is overdue, display item here-->
-            <!-- Column Left: ImageURL + ASIN/ID -->
-            <!-- Column Center: Item Name, DateCodeGiven -->
-            <!-- Column Right: (Link to purchase item), Link to write Review -->
-        </div>
+            <!-- Display Partial View ItemsToReview here-->
+            <div class="row dashOpenItem">
+                @Html.Action("ItemsToReview");
+            </div>
         
+        </div>
+
         <!-- Tab 5: "BRRReviews" Internal BRR Reviews Tab -->
         <div role="tabpanel" class="tab-pane fade" id="MyBRRReviews">
             <div class="alert alert-success review-alert row" id="dash-content" role="alert">
                 <div class="col-xs-12 dashboard-tab-description">
-                    If you reviewed a deal you got through Blue Ribbons on this website, 
+                    If you reviewed a deal you got through Blue Ribbons on this website,
                     it will list the item here with a link to your review!
                 </div>
             </div>
-            <!-- Displays reviewed items -->
-            <!-- Column Left: ImageURL + ASIN/ID -->
-            <!-- Column Center: Item Name, DateCodeGiven, ReviewDate -->
-            <!-- Column Right: (Link to purchase item), Link to view Review -->
+            <!-- Display Partial View InHouseReviews here-->
+            <div class="row dashOpenItem">
+                @Html.Action("InHouseReviews");
+            </div>
         </div>
 
         <!-- AD Boutique-->
         <!-- Please implement your own CacheBuster for accurate impression tracking  -->
         <a href='http://rover.ebay.com/rover/1/711-53200-19255-393/1?campid=5337984798&toolid=7115320019255393&customid=&mpvc='>
-        <img id="dashbottomimg"src='http://rover.ebay.com/ar/1/711-53200-19255-393/1?campid=5337984798&toolid=7115320019255393&customid=&mpt=[CACHEBUSTER]&adtype=1&size=728x90&mpvc=' alt='Click Here'>
+            <img id="dashbottomimg" src='http://rover.ebay.com/ar/1/711-53200-19255-393/1?campid=5337984798&toolid=7115320019255393&customid=&mpt=[CACHEBUSTER]&adtype=1&size=728x90&mpvc=' alt='Click Here'>
         </a>
         <br />
         <br />
@@ -456,12 +458,12 @@
         </div>
     </div>*@
 
-  
+
 
 
 
 @section Scripts{
 
     @*Social Buttons on this page*@
-    <script src="@Url.Content("~/Scripts/SocialInit.js")"></script>
+    <script src="@Url.Content(" ~/Scripts/SocialInit.js")"></script>
 }
