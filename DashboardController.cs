@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Blue_Ribbon.Models;
+using Blue_Ribbon.ViewModels;
 using Blue_Ribbon.DAL;
 using System.Data.Entity;
 using System.Net;
@@ -38,34 +39,77 @@ namespace Blue_Ribbon.Controllers
             return View(selectedCust);
         }
 
-        // NEW: Partial View for ReviewLog reviews on customer dashboard (Tab 5, BRR Reviews)
-        public ActionResult InHouseReviews()
+        // GET: Edit
+        [Authorize]
+        public ActionResult Edit(int? id)
         {
-            string user = User.Identity.Name;
-            //string customerEmail = User.Identity.Email;
-            string customerEmail = (from cust in db.Customers
-                                      where cust.CustomerID.Equals(user)
-                                      select cust.Email).First();
+            string userId = User.Identity.Name;
 
-            List<ReviewLog> InHouseReviews = (from log in db.ReviewLog
-                                              where log.Email.Equals(customerEmail) && log.CustomerReviewed == true
-                                              select log).ToList();
-            return PartialView(InHouseReviews);
+            Customer selectedCust = (from cust in db.Customers
+                                     where cust.CustomerID.Equals(userId)
+                                     select cust).First();
+
+            CheckForCompletedReviews check = new CheckForCompletedReviews(selectedCust);
+            check.Check();
+            selectedCust.LastReviewCheck = DateTime.Now;
+            db.Entry(selectedCust).State = EntityState.Modified;
+            db.SaveChanges();
+
+
+            return View(selectedCust);
         }
 
-        // NEW: Partial View for ReviewLog items-to-be-reviewed on customer dashboard (Tab 4, BRR Deals)
+        // NEW: Partial View for ReviewLogViewModel items-to-be-reviewed on customer dashboard (Tab 4, BRR Deals)
         public ActionResult ItemsToReview()
         {
+            
             string user = User.Identity.Name;
-            //string customerEmail = User.Identity.Email;
+            
             string customerEmail = (from cust in db.Customers
                                     where cust.CustomerID.Equals(user)
                                     select cust.Email).First();
 
-            List<ReviewLog> ItemsToReview = (from log in db.ReviewLog
+            List<ReviewLog> Logs = (from log in db.ReviewLog
                                               where log.Email.Equals(customerEmail) && log.CustomerReviewed == false
                                               select log).ToList();
-            return PartialView(ItemsToReview);
+
+            List<Deal> Deals = db.Deal.ToList();
+
+            List<ReviewLogViewModel> ItemsToReview = new List<ReviewLogViewModel>();
+
+            for (var i = 0; i < Logs.Count; i++)
+            {
+                var vm = new ReviewLogViewModel(Deals.Where(a => a.ASIN == Logs[i].ASIN).FirstOrDefault(), Logs[i]);
+                ItemsToReview.Add(vm);
+            }
+
+            return PartialView(ItemsToReview); 
+        }
+
+        // NEW: Partial View for ReviewLogViewModel reviews on customer dashboard (Tab 5, BRR Reviews)
+        public ActionResult InHouseReviews()
+        {
+            string user = User.Identity.Name;
+
+            string customerEmail = (from cust in db.Customers
+                                    where cust.CustomerID.Equals(user)
+                                    select cust.Email).First();
+
+            List<ReviewLog> Logs = (from log in db.ReviewLog
+                                    where log.Email.Equals(customerEmail) && log.CustomerReviewed == true
+                                    select log).ToList();
+
+            List<Deal> Deals = db.Deal.ToList();
+
+            List<ReviewLogViewModel> InHouseReviews = new List<ReviewLogViewModel>();
+
+            for (var i = 0; i < Logs.Count; i++)
+            {
+                var vm = new ReviewLogViewModel(Deals.Where(a => a.ASIN == Logs[i].ASIN).FirstOrDefault(), Logs[i]);
+                InHouseReviews.Add(vm);
+            }
+
+            return PartialView(InHouseReviews);
         }
 
         public ActionResult Carousel()

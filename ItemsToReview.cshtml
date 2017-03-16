@@ -1,4 +1,4 @@
-﻿@model List<Blue_Ribbon.Models.ReviewLog>
+﻿@model List<Blue_Ribbon.ViewModels.ReviewLogViewModel>
 @* This section-The Partial View for the InHouseReviews. Should display local reviews in tab 5 of Customer Dashboard*@
 
 <div>
@@ -9,15 +9,19 @@
             <!-- Column Left: ImageURL + ASIN/ID -->
             <div class="col-md-2 col-xs-3 text-center">
                 <!-- ImageURL from Deal here -->
-                Item#<b>@item.ASIN</b>
+                <img src=@item.ImageUrl class="dashboardRowImage" /><br />
+                Item# <b>@item.ASIN</b>
                 <br />
 
             </div>
             <!-- Column Center: Item Name, DateCodeGiven, ReviewDate -->
             <div class="col-md-6 col-xs-5">
                 <div class="row text-center">
-                    <b>@item.SelectedDate</b><br />
-                    
+                    <b>@item.ProductName </b> <br />
+                </div>
+                <hr />
+                <div class="row">
+                    Your received deal on: @item.SelectedDate.ToShortDateString()
                 </div>
             </div>
             <div class="col-md-1 col-xs-1">
@@ -26,16 +30,18 @@
             <!-- Column Right: (Link to purchase item), Link to view Review -->
             <div class="col-md-3 col-xs-2">
                 <div class="row">
-                    <a href="#" target="_blank"
-                       class="btn btn-primary"
-                       style="align-content:center; white-space:normal;">
+                    
+                    @Html.ActionLink( "Write Your Review Here", "Edit", "ReviewLog", new { id=item.ReviewLogId }, null)
+                       @*class="btn btn-primary"
+                       style="align-content:center; white-space:normal;"
                         Write your review here!
-                        <span class="glyphicon glyphicon-new-window"></span>
-                    </a>
+                        <span class="glyphicon glyphicon-new-window"></span>*@
+                    
+                   
                 </div>
             </div>
 
         </div>
-
+        <hr />
     }
 </div>
