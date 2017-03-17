@@ -3,7 +3,7 @@
 
 <div>
     @foreach (var item in Model)
-            {
+    {
             <!-- Displays reviewed items -->
         <div class="row dashOpenItem">
             <!-- Column Left: ImageURL + ASIN/ID -->
@@ -14,9 +14,11 @@
                 <br />
 
             </div>
-            <!-- Column Center: Item Name, DateCodeGiven, ReviewDate -->
+            <!-- Column Center: Item Name, DateCodeGiven -->
+            <!-- TODO: May want to add Discount Code -->
             <div class="col-md-6 col-xs-5">
                 <div class="row text-center">
+                    <br />
                     <b>@item.ProductName </b> <br />
                 </div>
                 <hr />
@@ -29,16 +31,30 @@
             </div>
             <!-- Column Right: (Link to purchase item), Link to view Review -->
             <div class="col-md-3 col-xs-2">
+                <!-- Button to write review, to ReviewLog Edit page-->
                 <div class="row">
-                    
-                    @Html.ActionLink( "Write Your Review Here", "Edit", "ReviewLog", new { id=item.ReviewLogId }, null)
-                       @*class="btn btn-primary"
-                       style="align-content:center; white-space:normal;"
-                        Write your review here!
-                        <span class="glyphicon glyphicon-new-window"></span>*@
-                    
-                   
+                    <br />
+                    <p>
+                        <span class="btn btn-primary" style="align-content:center; white-space:normal;">
+
+                            @Html.ActionLink("Write Your Review Here", "Edit", "ReviewLog", new { id = item.ReviewLogId }, new { @style = "color : white; text-decoration: none;" })
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </span>
+                    </p>                
                 </div>
+                <!-- Button to the vendor's page to purchase product -->
+                <div class="row">
+                    <p>
+                        
+                     <a href="@item.GetVendorsURL" target="_blank" 
+                        class="btn btn-success" 
+                        style="align-content:center; white-space:normal;">Purchase item here! 
+                        <span class="glyphicon glyphicon-new-window"></span></a>
+                       
+                    </p>
+
+                </div>
+
             </div>
 
         </div>

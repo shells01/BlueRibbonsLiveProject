@@ -15,8 +15,10 @@
 
             </div>
             <!-- Column Center: Item Name, DateCodeGiven, ReviewDate -->
+            <!-- TODO: May want to display Discount Code later -->
             <div class="col-md-6 col-xs-5">
                 <div class="row text-center">
+                    <br />
                     <b>@item.ProductName</b> <br />
                 </div>
                 <hr />
@@ -33,13 +35,31 @@
             </div>
             <!-- Column Right: (Link to purchase item), Link to view Review -->
             <div class="col-md-3 col-xs-2">
+                <!-- Button to view review, goes to AllReviews Index page -->
                 <div class="row">
-                    <a href="#" target="_blank"
-                       class="btn btn-primary"
-                       style="align-content:center; white-space:normal;">
-                        Read your review here!
-                        <span class="glyphicon glyphicon-new-window"></span>
-                    </a>
+                    <br />
+                    <p>
+                        <span class="btn btn-primary" style="align-content:center; white-space:normal;">
+
+                            @Html.ActionLink("Read Your Review Here", "Index", "AllReviews", new { id = item.ASIN }, new { @style = "color : white; text-decoration: none;" })
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </span>
+                    </p>         
+                    
+                </div>
+                <!-- Button to purchase item again, to vendors page -->
+                <div class="row">
+                    <p>
+
+                        <a href="@item.GetVendorsURL" target="_blank"
+                           class="btn btn-success"
+                           style="align-content:center; white-space:normal;">
+                            Purchase item here!
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </a>
+
+                    </p>
+
                 </div>
             </div>
 
