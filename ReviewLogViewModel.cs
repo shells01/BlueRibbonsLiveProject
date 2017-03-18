@@ -38,6 +38,7 @@ namespace Blue_Ribbon.ViewModels
         public bool? ListDealFlag { get; set; }
         public bool? Featured { get; set; }
         //public Vendor VendorInfo { get; set; }
+        public string GetVendorsURL { get; set; }
         #endregion
 
 
@@ -100,7 +101,7 @@ namespace Blue_Ribbon.ViewModels
             Category = deal.Category;
             ImageUrl = deal.ImageUrl;
             Description = deal.Description;
-            //RetailPrice stored as string
+            //RetailPrice stored as strin
             RetailPrice = double.Parse(deal.RetailPrice);
             VendorPurchaseURL = deal.VendorsPurchaseURL;
             OriginalPrice = deal.OriginalPriceNumerical;
@@ -109,6 +110,7 @@ namespace Blue_Ribbon.ViewModels
             Featured = deal.Featured;
             CalculatedDiscount = OriginalPrice - RetailPrice;
             //VendorInfo = deal.Vendor;
+            GetVendorsURL = deal.GetVendorsUrl; 
             #endregion
 
 
@@ -117,14 +119,14 @@ namespace Blue_Ribbon.ViewModels
             ReviewLogId = review.ReviewLogId;
             ASIN = review.ASIN;
             WebsiteAPIId = review.WebsiteAPIId;
-            SelectedDate = review.SelectedDate;
+            SelectedDate = DateTime.Now.Date;
             CustomerReviewed = review.CustomerReviewed;
             AutomaticValidation = review.AutomaticValidation;
             NeedsAdminReview = review.NeedsAdminReview;
             AdminReviewed = review.AdminReviewed;
             DisplayReview = review.DisplayReview;
             Rating = review.Rating;
-            DateReviewed = review.DateReviewed;
+            DateReviewed = DateTime.Now;
             Email = review.Email;
             ReviewSubject = review.ReviewSubject;
             ReviewBody = review.ReviewBody;
