@@ -1,6 +1,6 @@
 # LiveProject
 Samples of some code from my Live Project (open source)
-Live Project: Adding a new internal review feature to the Blue Ribbons Review website (blueribbonsreview.com)
+Live Project: Adding a new internal review feature to the Blue Ribbons Review website
 
 <b>DashboardIndex.cshtml</b>
 Customer dashboard for the Blue Ribbons website (incomplete).
