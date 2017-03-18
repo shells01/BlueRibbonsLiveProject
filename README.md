@@ -2,10 +2,10 @@
 Samples of some code from my Live Project (open source)
 Live Project: Adding a new internal review feature to the Blue Ribbons Review website (blueribbonsreview.com)
 
-<b>index.cshtml</b>
+<b>DashboardIndex.cshtml</b>
 Customer dashboard for the Blue Ribbons website (incomplete).
 - made some visual revisions
-- added new tabs for the new internal review feature. 
+- added 2 new tabs for the new internal review feature (BRR Deals, and BRR Reviews), to show the partial views ItemsToReview and InHouseReviews
 
 <b>DashboardController.cs</b>
 Controller for customer dashboard
@@ -27,9 +27,7 @@ ReviewLog Model, database for local Blue Ribbons reviews
 ViewModel for the ReviewLog and Deal models.
 - worked in a team of three to add some properties to the ViewModel
 
-<b>Index.cshtml</b>
-Homepage for the Blue Ribbons website
-- Made some slight changes to make content more consistent. 
+
 
 
 
