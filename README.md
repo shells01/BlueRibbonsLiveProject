@@ -7,8 +7,8 @@ Customer dashboard for the Blue Ribbons website (incomplete).
 - made some visual revisions
 - added 2 new tabs for the new internal review feature (BRR Deals, and BRR Reviews), to show the partial views ItemsToReview and InHouseReviews
 
-<b>DashboardController.cs</b>
-Controller for customer dashboard
+<b>DashboardControllerPartialViews.cs</b>
+Excerpt from controller for customer dashboard
 - added 2 PartialViews to the customer dashboard, InHouseReviews and ItemsToReview
 
 <b>InHouseReviews.cshtml</b>
